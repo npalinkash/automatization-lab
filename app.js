@@ -1,15 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser')
-require('dotenv').config()
+const http = require('http')
+const { getHello } = require('./controllers/appInfo.js')
 
-const app = express()
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+const server = http.createServer((req, res) => {
+    getHello(req, res)
+})
 
-// Defining app routes
-const APP = require('./router/appInfo')
-
-// Injecting app routes inside app variable
-app.use('/app', APP)
-
-module.exports = app
+module.exports = server

@@ -9,12 +9,13 @@ module.exports.getHello = async (req, res) => {
             greeting: `Hello, ${__app__.author}`
         }
 
-        res.status(200).json(packageData)
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify(packageData));
+        res.end();
     }
     catch(err){
-       res.status(500).json({
-        success: false,
-        msg: err.message ? err.message : err
-       })
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+       res.write(JSON.stringify(err))
+       res.end()
     }
 }
