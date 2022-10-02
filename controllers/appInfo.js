@@ -5,7 +5,8 @@ module.exports.getHello = async (req, res) => {
         const packageData = {
             appTitle: __app__.name,
             appVersion: __app__.version,
-            appAuthor: __app__.author
+            appAuthor: __app__.author,
+            greeting: `Hello, ${__app__.author}`
         }
 
         res.status(200).json(packageData)
